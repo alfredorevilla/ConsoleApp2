@@ -1,15 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace ConsoleApp2
 {
     public class Program
     {
-        private static void Main(string[] args)
-        {
-        }
-
         private static bool IsValidDigit(int number) => number >= 0 && number <= 9;
 
         private static bool Contains(int[] array, int value) => array.Length == 0 ? false : Array.BinarySearch(array, value) >= 0;
@@ -36,8 +31,6 @@ namespace ConsoleApp2
 
                     if (IsValidDigit(cell) && !Contains(rowSegment, cell))
                     {
-                        Console.WriteLine(new { rowSegment = JsonConvert.SerializeObject(rowSegment), cell });
-
                         var col = cols[colIndex];
                         col[rowIndex] = cell;
 
@@ -45,17 +38,14 @@ namespace ConsoleApp2
                         Array.Copy(col, colSegment, rowIndex);
                         if (!Contains(colSegment, cell))
                         {
-                            Console.WriteLine(new { colSegment = JsonConvert.SerializeObject(colSegment), cell });
                         }
                         else
                         {
-                            //Console.WriteLine(new { rowIndex, colIndex, cell });
                             return false;
                         }
                     }
                     else
                     {
-                        //Console.WriteLine(new { rowIndex, colIndex, cell });
                         return false;
                     }
                 }
